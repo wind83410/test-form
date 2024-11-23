@@ -1,1 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --blue-0: #3c71ff;
+  --blue-1: #F1F5FF;
+  --gray-scale-0: #000;
+  --gray-scale-1: #757575;
+  --gray-scale-2: #ababab;
+}
+
+/*******
+ * RESET
+ *******/
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  font-size: inherit;
+}
+
+h1 {
+  margin: 0;
+}
+
+/*******
+ GENERAL STYLE
+ *******/
+
+body {
+  line-height: 1.2;
+  font-size: 1rem;
+  font-family: Interstate, sans-serif;
+}
+
+/*******
+ GRID
+ *******/
+
+.grid {
+  display: grid;
+  gap: 1rem 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.col-1 {
+  grid-column: span 1;
+}
+
+.col-2 {
+  grid-column: span 2;
+}
+
+/*******
+ LINK
+ *******/
+
+.link:hover {
+  text-decoration: underline var(--blue-0) solid 2px;
+}
+
+/*******
+ BUTTONS IN THE FORM
+ *******/
+
+.form-btn {
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 13px;
+  background-color: var(--form-btn-bg, var(--blue-0));
+  color: var(--form-btn-color, #fff);
+  border: 1px solid var(--form-btn-border, transparent);
+
+  // need icon color setting;
+  &:hover {
+    box-shadow: 0px 6px 15px 0px #3C71FF66;
+  }
+}
+
+.form-btn--outlined {
+  --form-btn-bg: transparent;
+  --form-btn-color: var(--gray-scale-0);
+  --form-btn-border: var(--blue-0);
+
+  // need icon color setting;
+  &:hover {
+    --form-btn-bg: var(--blue-0);
+    --form-btn-color: #fff;
+  }
+}

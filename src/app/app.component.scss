@@ -1,0 +1,94 @@
+/******
+ UTILITIES
+ ******/
+
+.text-center {
+  text-align: center;
+}
+
+/******
+ ALTERED SHARED STYLES
+ ******/
+
+.form-btn {
+  width: 100%;
+  min-height: 3rem;
+}
+
+/******
+ COMPONENT STYLE
+ ******/
+
+:host {
+  display: block;
+  height: 100vh;
+  padding: 4rem 0;
+  background-color: var(--blue-1);
+}
+
+.message {
+  display: flex;
+  column-gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--message-border-color, #000);
+  background-color: var(--message-bg-color, transparent);
+  color: #000;
+  // icon-color setting;
+}
+
+.message--alert {
+  --message-border-color: #D71920;
+  --message-bg-color: #F5C4C6;
+  // icon-color setting;
+}
+
+.section {
+  max-width: 37.5rem;
+  padding: 1.5rem 1.875rem;
+  margin: 0 auto;
+  border-radius: 0.25rem;
+  background-color: #fff;
+
+  &__header-navi {
+    text-underline-offset: 0.25rem;
+  }
+
+  &__body {
+    margin-top: 2rem;
+  }
+}
+
+.login-form {
+  max-width: 25rem;
+  border-radius: 0.25rem;
+  margin: 0 auto;
+
+  &__subtitle {
+    font-size: 1.125rem;
+  }
+
+  &__title {
+    font-size: 1.875rem;
+    margin-top: 0.5rem;
+  }
+
+  &__instruction {
+    font-size: 0.875rem;
+    display: flex;
+    column-gap: 9px;
+    align-items: center;
+
+    &::after {
+      content: "";
+      flex: 1 1 auto;
+      height: 1px;
+      background-color: var(--gray-scale-0);
+    }
+  }
+
+  &__footer {
+    color: var(--gray-scale-1);
+    font-size: 13px;
+  }
+}
