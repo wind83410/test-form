@@ -3,42 +3,141 @@
     <button class="link section__header-navi">←Back</button>
   </div>
   <div class="section__body">
-    <form class="login-form">
+    <form class="login-form" [formGroup]="signInForm" (ngSubmit)="onFormSubmit()">
       <div class="grid login-form__header">
         <div class="col-2">
           <span class="login-form__subtitle">Start from free</span>
           <h1 class="login-form__title">Create an account</h1>
         </div>
-        <div class="col-2">
+        <div class="col-2" [class.d-none]="hideMessageOrNot()">
           <div class="message message--alert">
-            <!-- insert icon here -->
+            <div class="icon icon--alert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                <path
+                  d="M12.5 2C6.9775 2 2.5 6.4775 2.5 12C2.5 17.5225 6.9775 22 12.5 22C18.0225 22 22.5 17.5225 22.5 12C22.5 6.4775 18.0225 2 12.5 2ZM13.75 18.25H11.25V15.75H13.75V18.25ZM13.75 14.5H11.25V7H13.75V14.5Z"
+                  fill="#D71920" />
+              </svg>
+            </div>
             <span>Please complete all the required fields to proceed.</span>
           </div>
         </div>
         <div class="col-1">
-          <button class="form-btn form-btn--outlined">Sign up with Google</button>
+          <button type="button" class="form-btn form-btn--social form-btn--outlined">
+            <div class="icon icon--logo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16">
+                <path
+                  d="M8.5 6.4V9.6H13.0264C12.3656 11.4624 10.5864 12.8 8.5 12.8C5.8536 12.8 3.7 10.6464 3.7 8C3.7 5.3536 5.8536 3.2 8.5 3.2C9.6472 3.2 10.7512 3.6112 11.6088 4.3584L13.7112 1.9456C12.2712 0.6912 10.4216 0 8.5 0C4.0888 0 0.5 3.5888 0.5 8C0.5 12.4112 4.0888 16 8.5 16C12.9112 16 16.5 12.4112 16.5 8V6.4H8.5Z" />
+              </svg>
+            </div>
+            Sign up with Google
+          </button>
         </div>
         <div class="col-1">
-          <button class="form-btn form-btn--outlined">Sign up with Facebook</button>
+          <button type="button" class="form-btn form-btn--social form-btn--outlined">
+            <div class="icon icon--logo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16">
+                <g clip-path="url(#clip0_8167_5)">
+                  <path
+                    d="M11.1647 2.65666H12.6253V0.112659C12.3733 0.0779924 11.5067 -7.62939e-06 10.4973 -7.62939e-06C8.39133 -7.62939e-06 6.94867 1.32466 6.94867 3.75933V5.99999H4.62467V8.84399H6.94867V16H9.798V8.84466H12.028L12.382 6.00066H9.79733V4.04133C9.798 3.21933 10.0193 2.65666 11.1647 2.65666Z" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_8167_5">
+                    <rect width="16" height="16" transform="translate(0.5)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            Sign up with Facebook
+          </button>
         </div>
         <div class="col-2">
           <span class="login-form__instruction">Or use your email for registration</span>
         </div>
       </div>
       <div class="grid">
-        <div class="col-1"></div>
-        <div class="col-1"></div>
-        <div class="col-2"></div>
-        <div class="col-2"></div>
+        <div class="col-1">
+          <tf-form-input name="First Name">
+            <input type="text" tfInput formControlName="firstName">
+          </tf-form-input>
+        </div>
+        <div class="col-1">
+          <tf-form-input name="Last Name">
+            <input type="text" tfInput formControlName="lastName">
+          </tf-form-input>
+        </div>
+        <div class="col-2">
+          <tf-form-input name="Email">
+            <input type="email" tfInput formControlName="email">
+          </tf-form-input>
+        </div>
+        <div class="col-2">
+          <tf-form-input name="Password">
+            <input type="{{ isPasswordUnveiled ? 'text' : 'password'}}" tfInput formControlName="password">
+            <button type="button" tfSuffix class="password-veil" [class.password-veil--unveiled]="isPasswordUnveiled"
+              (click)="isPasswordUnveiled = !isPasswordUnveiled">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19">
+                <path
+                  d="M18.8792 9.13046C18.7095 8.89826 14.6652 3.44507 9.49991 3.44507C4.33461 3.44507 0.290122 8.89827 0.120569 9.13024C-0.0401895 9.35052 -0.0401895 9.64929 0.120569 9.86957C0.290122 10.1018 4.33461 15.555 9.49991 15.555C14.6652 15.555 18.7095 10.1017 18.8792 9.86975C19.0402 9.64951 19.0402 9.35052 18.8792 9.13046ZM9.49991 14.3022C5.69511 14.3022 2.39976 10.6828 1.42426 9.49959C2.39849 8.31531 5.68695 4.69781 9.49991 4.69781C13.3045 4.69781 16.5996 8.31657 17.5756 9.50044C16.6013 10.6847 13.3129 14.3022 9.49991 14.3022Z" />
+                <path
+                  d="M9.4999 5.7417C7.42763 5.7417 5.74164 7.42769 5.74164 9.49996C5.74164 11.5722 7.42763 13.2582 9.4999 13.2582C11.5722 13.2582 13.2582 11.5722 13.2582 9.49996C13.2582 7.42769 11.5722 5.7417 9.4999 5.7417ZM9.4999 12.0054C8.11831 12.0054 6.99442 10.8815 6.99442 9.49996C6.99442 8.11841 8.11835 6.99448 9.4999 6.99448C10.8814 6.99448 12.0054 8.11841 12.0054 9.49996C12.0054 10.8815 10.8815 12.0054 9.4999 12.0054Z" />
+              </svg>
+            </button>
+          </tf-form-input>
+          <ul class="login-form__condition-list">
+            <li class="login-form__condition"
+              [class.login-form__condition--satisfied]="!signInForm.controls.password.errors?.['minlength'] && !!signInForm.controls.password.value">
+              <div class="icon icon--condition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11">
+                  <circle cx="5.5" cy="5.5" r="5.5" />
+                  <path d="M3 6.18182L5.08333 8L8 4" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="login-form__condition-text">8 Characters min.</span>
+            </li>
+            <li class="login-form__condition"
+              [class.login-form__condition--satisfied]="!signInForm.controls.password.errors?.['pattern'] && !!signInForm.controls.password.value">
+              <div class="icon icon--condition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11">
+                  <circle cx="5.5" cy="5.5" r="5.5" />
+                  <path d="M3 6.18182L5.08333 8L8 4" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="login-form__condition-text">One number.</span>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="grid login-form__footer">
         <div class="col-2">
-          <div>
+          <label for="agree-policy" class="login-form__policy-agreement">
+            <div class="mock-checkbox">
+              <div class="icon icon--checkbox">
+                @if(!checkbox.checked) {
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M1 0C0.447715 0 0 0.447716 0 1V17C0 17.5523 0.447716 18 1 18H17C17.5523 18 18 17.5523 18 17V1C18 0.447715 17.5523 0 17 0H1Z"
+                    fill="#ABABAB" />
+                </svg>
+                } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 12.5L11 15.5L16.5 9.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M9 14L6 11L5 12L9 16L18 7L17 6L9 14Z" fill="white" />
+                  <rect x="3.5" y="3.5" width="17" height="17" rx="1.5" fill="white" stroke="#3C71FF" />
+                  <path d="M16.5 8L18 9.25L11.5 16.75L7 12.25L8.375 10.875L11.375 13.875L16.5 8Z" fill="#3C71FF" />
+                </svg>
+                }
+              </div>
+              <input #checkbox class="mock-checkbox__body" type="checkbox" id="agree-policy"
+                formControlName="agreedPolicy">
+            </div>
             <span>By creating account, you agree to accept our Privacy Policy, Terms of Service and Notification
               settings.</span>
-          </div>
+          </label>
         </div>
-        <div class="col-2"><button class="form-btn">Create a Free Account</button></div>
+        <div class="col-2">
+          <button type="submit" class="form-btn">Create a Free Account!</button>
+        </div>
         <div class="col-2 text-center">
           <span>Already have an account? <a href="#" class="link">Log in</a></span>
         </div>

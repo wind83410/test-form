@@ -21,6 +21,13 @@ body {
   margin: 0;
 }
 
+input {
+  border: 0;
+  padding: 0;
+  outline: none;
+  background-color: transparent;
+}
+
 a {
   color: #000;
   text-decoration: none;
@@ -28,11 +35,17 @@ a {
 
 button {
   border: 0;
+  padding: 0;
   background-color: transparent;
   font-size: inherit;
 }
 
 h1 {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
   margin: 0;
 }
 
@@ -83,8 +96,7 @@ body {
   background-color: var(--form-btn-bg, var(--blue-0));
   color: var(--form-btn-color, #fff);
   border: 1px solid var(--form-btn-border, transparent);
-
-  // need icon color setting;
+  fill: var(--form-svg-color, var(--blue-0));
   &:hover {
     box-shadow: 0px 6px 15px 0px #3C71FF66;
   }
@@ -94,10 +106,21 @@ body {
   --form-btn-bg: transparent;
   --form-btn-color: var(--gray-scale-0);
   --form-btn-border: var(--blue-0);
-
+  --form-svg-color: var(--blue-0);
   // need icon color setting;
   &:hover {
     --form-btn-bg: var(--blue-0);
     --form-btn-color: #fff;
+    --form-svg-color: #fff;
   }
+}
+
+/******
+ ICON
+ ******/
+
+.icon {
+  display: inline-block;
+  width: var(--icon-size, 1rem);
+  height: var(--icon-size, 1rem);
 }

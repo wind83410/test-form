@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.d-none {
+  display: none;
+}
+
 /******
  ALTERED SHARED STYLES
  ******/
@@ -21,9 +25,37 @@
 
 :host {
   display: block;
-  height: 100vh;
+  min-height: 100vh;
   padding: 4rem 0;
   background-color: var(--blue-1);
+}
+
+.form-btn--social {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+}
+
+.icon--alert {
+  --icon-size: 1.5rem
+}
+
+.icon--checkbox {
+  --icon-size: 1.5rem;
+  position: relative;
+  left: -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon--checkbox-blank {
+  stroke: var(--gray-scale-1);
+  fill: var(--gray-scale-1);
+}
+
+.icon--condition {
+  --icon-size: 11px;
 }
 
 .message {
@@ -41,6 +73,27 @@
   --message-border-color: #D71920;
   --message-bg-color: #F5C4C6;
   // icon-color setting;
+}
+
+.mock-checkbox {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  &__body {
+    position: absolute;
+    left: -100%;
+    display: block;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+}
+
+.password-veil {
+  fill: var(--gray-scale-1);
+  &--unveiled {
+    fill: var(--blue-0);
+  }
 }
 
 .section {
@@ -63,6 +116,10 @@
   max-width: 25rem;
   border-radius: 0.25rem;
   margin: 0 auto;
+
+  > * + * {
+    margin-top: 25px;
+  }
 
   &__subtitle {
     font-size: 1.125rem;
@@ -87,8 +144,33 @@
     }
   }
 
+  &__condition-list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.875rem;
+    margin-top: 0.5rem;
+  }
+
+  &__condition {
+    display: flex;
+    column-gap: 0.25rem;
+    font-size: 0.625rem;
+    fill: var(--gray-scale-2);
+    color: var(--gray-scale-2);
+    &--satisfied {
+      fill: #4AE7A5;
+      color: var(--gray-scale-0);
+    }
+  }
+
   &__footer {
     color: var(--gray-scale-1);
     font-size: 13px;
+  }
+
+  &__policy-agreement{
+    display: flex;
+    column-gap: 1px;
+    align-items: center;
   }
 }
