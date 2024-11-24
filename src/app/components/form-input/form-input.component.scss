@@ -30,6 +30,9 @@
     font-size: 0.875rem;
     color: var(--gray-scale-0);
   }
+  > ::ng-deep input {
+    width: 100%;
+  }
 }
 
 .tf-form-input__suffix {
