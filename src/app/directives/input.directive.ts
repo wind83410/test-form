@@ -5,8 +5,8 @@ import { Subject } from 'rxjs';
 @Directive({
   selector: '[tfInput]',
   host: {
-    '(focus)': '_focusChanged(true)',
-    '(blur)': '_focusChanged(false)'
+    '(focus)': 'changeFocus(true)',
+    '(blur)': 'changeFocus(false)'
   },
   standalone: true
 })
@@ -25,7 +25,9 @@ export class InputDirective implements OnDestroy {
     return !!this.elementRef.nativeElement.value;
   }
 
-  constructor() { }
+  constructor() {
+    return;
+  }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
@@ -33,9 +35,12 @@ export class InputDirective implements OnDestroy {
     this.stateChange$.complete();
   }
 
-  _focusChanged(isFocused: boolean) {
+  changeFocus(isFocused: boolean) {
     if (this._isFocused === isFocused) return;
     this._isFocused = isFocused;
+    if (this._isFocused) {
+      this.elementRef.nativeElement.focus()
+    };
     this.stateChange$.next();
   }
 

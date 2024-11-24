@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentInit, Component, ContentChild, inject, InjectionToken, Input, OnDestroy, QueryList, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, inject, InjectionToken, Input, OnDestroy } from '@angular/core';
 import { SuffixDirective, TF_SUFFIX } from '../../directives/suffix.directive';
-import { NgControl } from '@angular/forms';
 import { InputDirective } from '../../directives/input.directive';
-import { BehaviorSubject, filter, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 let TF_INPUT_INSTANCE_COUNTER = new InjectionToken<BehaviorSubject<number>>('instance counter');
 
@@ -15,7 +14,7 @@ let TF_INPUT_INSTANCE_COUNTER = new InjectionToken<BehaviorSubject<number>>('ins
     '[class.tf-form-input--suffix]': '_hasSuffix',
     '[class.tf-form-input--awaiting]': '!_isLabelFloated',
     '[class.tf-form-input--invalid]': 'isInvalid',
-    '(click)': '_isLabelFloated = true'
+    '(click)': 'focusField()'
   },
   providers: [
     { provide: TF_INPUT_INSTANCE_COUNTER, useValue: new BehaviorSubject<number>(0) }
@@ -67,6 +66,10 @@ export class FormInputComponent implements AfterContentInit, OnDestroy {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this._stateChangeSubscription?.unsubscribe();
+  }
+
+  focusField() {
+    this._control?.changeFocus(true)
   }
 
   setInputElementIDInDirective() {
