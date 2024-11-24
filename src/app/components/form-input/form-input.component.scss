@@ -1,0 +1,64 @@
+/******
+ COMPONENT STYLES
+ ******/
+
+:host {
+  display: block;
+  padding: 0 0.75rem;
+  height: 3rem;
+  border-radius: 0.25rem;
+  background-color: var(--blue-1);
+}
+
+.tf-form-input__body {
+  flex: 1;
+  padding-top: 0.5rem;
+  padding-bottom: 0.625rem;
+}
+
+.tf-form-input__name {
+  display: block;
+  width: fit-content;
+  margin-bottom: 2px;
+  font-size: 0.625rem;
+  color: var(--gray-scale-1);
+}
+
+.tf-form-input__field {
+  opacity: 1;
+  > ::ng-deep * {
+    font-size: 0.875rem;
+    color: var(--gray-scale-0);
+  }
+}
+
+.tf-form-input__suffix {
+  flex: 0 0 auto;
+}
+
+/******
+ HOST SELECTORS
+ ******/
+
+:host-context(.tf-form-input--invalid) {
+  outline: 2px solid #D71920;
+}
+
+:host-context(.tf-form-input--suffix) {
+  padding-right: 19px;
+  display: flex;
+  .tf-form-input__suffix {
+    align-self: center;
+  }
+}
+
+:host-context(.tf-form-input--awaiting) {
+  .tf-form-input__name {
+    transform-origin: 0 0;
+    scale: 1.4;
+    translate: 0 9px;
+  }
+  .tf-form-input__field {
+    opacity: 0;
+  }
+}

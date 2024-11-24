@@ -1,0 +1,11 @@
+<div class="tf-form-input__body">
+  <label class="tf-form-input__name" for="{{ labelInputIDPrefix }}-{{ instanceIndex }}">{{ name }}</label>
+  <div class="tf-form-input__field">
+    <ng-content></ng-content>
+  </div>
+</div>
+@if (_hasSuffix) {
+  <div class="tf-form-input__suffix">
+    <ng-content select="[tfSuffix]"></ng-content>
+  </div>
+}
