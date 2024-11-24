@@ -98,6 +98,7 @@
 }
 
 .password-veil {
+  display: flex;
   fill: var(--gray-scale-1);
   &--unveiled {
     fill: var(--blue-0);
