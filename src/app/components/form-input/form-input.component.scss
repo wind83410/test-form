@@ -8,6 +8,8 @@
   height: 3rem;
   border-radius: 0.25rem;
   background-color: var(--blue-1);
+  outline: 2px solid transparent;
+  transition: outline-color 0.3s;
 }
 
 .tf-form-input__body {
@@ -22,14 +24,20 @@
   margin-bottom: 2px;
   font-size: 0.625rem;
   color: var(--gray-scale-1);
+  transform-origin: 0 0;
+  scale: 1;
+  translate: 0 0;
+  transition: scale 0.1s, translate 0.1s;
 }
 
 .tf-form-input__field {
   opacity: 1;
+
   > ::ng-deep * {
     font-size: 0.875rem;
     color: var(--gray-scale-0);
   }
+
   > ::ng-deep input {
     width: 100%;
   }
@@ -44,12 +52,13 @@
  ******/
 
 :host-context(.tf-form-input--invalid) {
-  outline: 2px solid var(--red-scale-0, #D71920);
+  outline-color: var(--red-scale-0, #D71920);
 }
 
 :host-context(.tf-form-input--suffix) {
   padding-right: 19px;
   display: flex;
+
   .tf-form-input__suffix {
     align-self: center;
   }
@@ -61,6 +70,7 @@
     scale: 1.4;
     translate: 0 9px;
   }
+
   .tf-form-input__field {
     opacity: 0;
   }

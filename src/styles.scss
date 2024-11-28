@@ -40,6 +40,7 @@ button {
   padding: 0;
   background-color: transparent;
   font-size: inherit;
+  cursor: pointer;
 }
 
 h1 {
@@ -83,9 +84,15 @@ body {
  LINK
  *******/
 
-.link:hover {
-  text-decoration: underline var(--blue-0) solid 2px;
+.link {
+  margin-bottom: -2px;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s;
+  &:hover {
+    border-bottom-color: var(--blue-0);
+  }
 }
+
 
 /*******
  BUTTONS IN THE FORM
@@ -99,6 +106,7 @@ body {
   color: var(--form-btn-color, #fff);
   border: 1px solid var(--form-btn-border, transparent);
   fill: var(--form-svg-color, var(--blue-0));
+  transition: all 0.2s;
   &:hover {
     box-shadow: 0px 6px 15px 0px #3C71FF66;
   }

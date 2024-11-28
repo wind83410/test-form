@@ -5,11 +5,21 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { SuffixDirective } from './directives/suffix.directive';
 import { InputDirective } from './directives/input.directive';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, ReactiveFormsModule, FormInputComponent, SuffixDirective, InputDirective],
+  animations: [trigger('showBlock', [
+    transition(':enter', [
+      style({ opacity: 0 }),
+      animate('250ms', style({ opacity: 1 }))
+    ]),
+    transition(':leave', [
+      animate('250ms', style({ opacity: 0 }))
+    ])
+  ])],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
