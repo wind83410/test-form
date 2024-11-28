@@ -19,6 +19,17 @@ export class AppComponent {
   isPasswordUnveiled = false;
   attemptedToSubmit = false;
 
+  passwordValidators: { validator: (value: string) => boolean, errorMessage: string }[] = [
+    {
+      validator: (value) => value.length >= 8,
+      errorMessage: '8 Characters min.'
+    },
+    {
+      validator: (value) => /[0-9]+/.test(value),
+      errorMessage: 'One number.'
+    }
+  ]
+
   constructor(
     private formBuilder: FormBuilder
   ) {
@@ -29,7 +40,7 @@ export class AppComponent {
     firstName: this.formBuilder.control<string>('', { validators: Validators.required, updateOn: 'submit'}),
     lastName: this.formBuilder.control<string>('', { validators: Validators.required, updateOn: 'submit'}),
     email: this.formBuilder.control<string>('', { validators: [Validators.required, Validators.email], updateOn: 'submit'}),
-    password: this.formBuilder.control<string>('', { validators: [Validators.required, Validators.minLength(8), Validators.pattern(/[0-9]+/)]}),
+    password: this.formBuilder.control<string>('', { validators: [Validators.required, Validators.minLength(8), Validators.pattern(/[0-9]+/)], updateOn: 'submit'}),
     agreedPolicy: this.formBuilder.control(false, { validators: Validators.requiredTrue, updateOn: 'submit'})
   });
 

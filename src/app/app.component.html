@@ -12,10 +12,9 @@
         <div class="col-2" [class.d-none]="hideMessageOrNot()">
           <div class="message message--alert">
             <div class="icon icon--alert">
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24">
                 <path
-                  d="M12.5 2C6.9775 2 2.5 6.4775 2.5 12C2.5 17.5225 6.9775 22 12.5 22C18.0225 22 22.5 17.5225 22.5 12C22.5 6.4775 18.0225 2 12.5 2ZM13.75 18.25H11.25V15.75H13.75V18.25ZM13.75 14.5H11.25V7H13.75V14.5Z"
-                  fill="#D71920" />
+                  d="M12.5 2C6.9775 2 2.5 6.4775 2.5 12C2.5 17.5225 6.9775 22 12.5 22C18.0225 22 22.5 17.5225 22.5 12C22.5 6.4775 18.0225 2 12.5 2ZM13.75 18.25H11.25V15.75H13.75V18.25ZM13.75 14.5H11.25V7H13.75V14.5Z" />
               </svg>
             </div>
             <span>Please complete all the required fields to proceed.</span>
@@ -72,7 +71,7 @@
         </div>
         <div class="col-2">
           <tf-form-input name="Password">
-            <input type="{{ isPasswordUnveiled ? 'text' : 'password'}}" tfInput formControlName="password">
+            <input type="{{ isPasswordUnveiled ? 'text' : 'password'}}" tfInput formControlName="password" #password>
             <button type="button" tfSuffix class="password-veil" [class.password-veil--unveiled]="isPasswordUnveiled"
               (click)="isPasswordUnveiled = !isPasswordUnveiled">
               <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19">
@@ -84,39 +83,31 @@
             </button>
           </tf-form-input>
           <ul class="login-form__condition-list">
+            @for (validator of passwordValidators; track validator.errorMessage) {
             <li class="login-form__condition"
-              [class.login-form__condition--satisfied]="!signInForm.controls.password.errors?.['minlength'] && !!signInForm.controls.password.value">
+              [class.login-form__condition--satisfied]="validator.validator(password.value)">
               <div class="icon icon--condition">
                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11">
                   <circle cx="5.5" cy="5.5" r="5.5" />
                   <path d="M3 6.18182L5.08333 8L8 4" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
-              <span class="login-form__condition-text">8 Characters min.</span>
+              <span class="login-form__condition-text">{{ validator.errorMessage }}</span>
             </li>
-            <li class="login-form__condition"
-              [class.login-form__condition--satisfied]="!signInForm.controls.password.errors?.['pattern'] && !!signInForm.controls.password.value">
-              <div class="icon icon--condition">
-                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11">
-                  <circle cx="5.5" cy="5.5" r="5.5" />
-                  <path d="M3 6.18182L5.08333 8L8 4" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </div>
-              <span class="login-form__condition-text">One number.</span>
-            </li>
+            }
           </ul>
         </div>
       </div>
       <div class="grid login-form__footer">
         <div class="col-2">
-          <label for="agree-policy" class="login-form__policy-agreement">
+          <label for="agree-policy" class="login-form__policy-agreement"
+            [class.login-form__policy-agreement--unchecked]="!signInForm.controls.agreedPolicy.valid && (signInForm.controls.agreedPolicy.touched || signInForm.controls.agreedPolicy.dirty)">
             <div class="mock-checkbox">
               <div class="icon icon--checkbox">
                 @if(!checkbox.checked) {
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                   <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M1 0C0.447715 0 0 0.447716 0 1V17C0 17.5523 0.447716 18 1 18H17C17.5523 18 18 17.5523 18 17V1C18 0.447715 17.5523 0 17 0H1Z"
-                    fill="#ABABAB" />
+                    d="M1 0C0.447715 0 0 0.447716 0 1V17C0 17.5523 0.447716 18 1 18H17C17.5523 18 18 17.5523 18 17V1C18 0.447715 17.5523 0 17 0H1Z" />
                 </svg>
                 } @else {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

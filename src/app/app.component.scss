@@ -32,6 +32,7 @@
   min-height: 100vh;
   padding: 4rem 0;
   background-color: var(--blue-1);
+
   @media (max-width: 417px) {
     padding: 0;
     background-color: #fff;
@@ -74,19 +75,20 @@
   border: 1px solid var(--message-border-color, #000);
   background-color: var(--message-bg-color, transparent);
   color: #000;
-  // icon-color setting;
+  fill: var(--message-icon-color, currentColor);
 }
 
 .message--alert {
-  --message-border-color: #D71920;
-  --message-bg-color: #F5C4C6;
-  // icon-color setting;
+  --message-border-color: var(--red-scale-0);
+  --message-bg-color: var(--red-scale-1);
+  --message-icon-color: var(--red-scale-0);
 }
 
 .mock-checkbox {
   position: relative;
   overflow: hidden;
   flex: 0 0 auto;
+
   &__body {
     position: absolute;
     left: -100%;
@@ -100,6 +102,7 @@
 .password-veil {
   display: flex;
   fill: var(--gray-scale-1);
+
   &--unveiled {
     fill: var(--blue-0);
   }
@@ -111,15 +114,18 @@
   margin: 0 auto;
   border-radius: 0.25rem;
   background-color: #fff;
+
   @media (max-width: 417px) {
     padding: 1.5rem 0.5rem;
   }
+
   &__header-navi {
     text-underline-offset: 0.25rem;
   }
 
   &__body {
     margin-top: 2rem;
+
     @media (max-width: 417px) {
       margin-top: 1.5rem;
     }
@@ -171,6 +177,7 @@
     font-size: 0.625rem;
     fill: var(--gray-scale-2);
     color: var(--gray-scale-2);
+
     &--satisfied {
       fill: #4AE7A5;
       color: var(--gray-scale-0);
@@ -182,9 +189,19 @@
     font-size: 13px;
   }
 
-  &__policy-agreement{
+  &__policy-agreement {
     display: flex;
     column-gap: 1px;
     align-items: center;
+
+    .icon--checkbox {
+      fill: var(--gray-scale-1);
+    }
+  }
+
+  &__policy-agreement--unchecked {
+    .icon--checkbox {
+      fill: #F5C4C6;
+    }
   }
 }
